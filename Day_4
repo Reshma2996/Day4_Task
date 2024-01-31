@@ -1,0 +1,319 @@
+1.Do the below programs in anonymous function & IIFE
+
+Print odd numbers in an array
+============================
+
+Anonymous:
+---------
+
+let oddNumbersArray=function(arr){
+        for (var i =0; i<arr.length; i++)
+{
+if(arr[i]%2!==0)
+console.log(arr[i])
+}
+    }
+    oddNumbersArray([1,2,3,4,5,6,7,8,9])
+
+IIFE:
+----
+(
+            function(arr){
+                // even or odd
+                for(var i=0;i<arr.length;i++){
+                    if(arr[i]%2!==0){
+                        console.log(arr[i])
+                    }
+                }
+            }
+        )([1,2,3,4,5,6,7,8,9,10,11]);
+
+
+Convert all the strings to title caps in a string array
+======================================================
+
+Anonymous:
+---------
+
+let stringTitlecaps=function(string){
+        for (var i =0; i<string.length; i++)
+{
+
+console.log(string[i].toUpperCase())
+}
+    }
+    stringTitlecaps(["string1","string2","string3"])
+
+IIFE:
+----
+(
+            function(string){
+          
+                for(var i=0;i<string.length;i++){
+                    
+                        console.log(string[i].toUpperCase())
+                    
+                }
+            }
+        )(["string1","string2","string3"]);
+
+Sum of all numbers in an array
+======================================================
+Anonymous:
+---------
+let sumOfNumbers=function(arr){
+  let sum = 0
+        for (var i =0; i<arr.length; i++)
+{
+sum = sum + arr[i]
+}
+console.log(sum)
+    }
+    sumOfNumbers([1,2,3,4,5,6,7,8,9])
+
+
+IIFE:
+----
+
+(function(arr){
+  let sum = 0
+for(var i=0;i<arr.length;i++)
+{
+sum = sum + arr[i]
+}
+console.log(sum)
+ })([1,2,3,4,5,6,7,8,9]);
+
+Return all the prime numbers in an array
+======================================================
+Anonymous:
+---------
+var  Array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 31];
+
+var primeNumbers = Array.filter(function(num) {
+  if (num <= 1) return false;
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false;
+  }
+  return true;
+});
+console.log(primeNumbers)
+
+IIFE:
+----
+var Array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+var primeNumbers = (function(arr) {
+  return arr.filter(function(num) {
+    if (num <= 1) return false;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+      if (num % i === 0) return false;
+    }
+    return true;
+  });
+})(Array);
+console.log(primeNumbers)
+
+Return all the palindromes in an array
+======================================================
+Anonymous:
+---------
+var Array = ["gaag", "hello", "mom", "wow", "deed"];
+
+var palindrome = Array.filter(function(str) {
+  var casechange = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+  return casechange === casechange.split('').reverse().join('');
+});
+
+console.log(palindrome)
+IIFE:
+----
+var Array = ["gaag", "hello", "mom", "wow", "deed"];
+
+var palindrome = (function(arr){
+return Array.filter(function(str) {
+  var casechange = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+  return casechange === casechange.split('').reverse().join('');
+});
+})(Array);
+
+console.log(palindrome)
+
+Return median of two sorted arrays of the same size.
+======================================================
+Anonymous:
+---------
+
+var arr1 = [1,3,5]
+var arr2 =[2,4,6]
+ 
+function findMedianOfArrays(arr1, arr2) {
+  const mergedArray = [...arr1, ...arr2].sort((a, b) => a - b);
+  const length = mergedArray.length;
+  const mid = Math.floor(length / 2);
+
+  if (length % 2 == 0) {
+    // If the merged array has an even length, take the average of the two middle elements
+    return (mergedArray[mid - 1] + mergedArray[mid]) / 2;
+  } else {
+    // If the merged array has an odd length, return the middle element
+    return mergedArray[mid];
+  }
+};
+const median = findMedianOfArrays(arr1, arr2);
+console.log(median)
+
+IIFE:
+----
+var arr1 = [1,3,5]
+var arr2 =[2,4,6]
+const findMedianOfArrays = (function() {
+  return function(arr1, arr2) {
+    // Step 1: Merge the two arrays into one array
+    const mergedArray = [...arr1, ...arr2];
+
+    // Step 2: Sort the merged array
+    mergedArray.sort(function(a, b) {
+      return a - b;
+    });
+
+    // Step 3: Calculate the median based on the length of the merged array
+    const length = mergedArray.length;
+    const mid = Math.floor(length / 2);
+
+    if (length % 2 === 0) {
+      // If the merged array has an even length, take the average of the two middle elements
+      return (mergedArray[mid - 1] + mergedArray[mid]) / 2;
+    } else {
+      // If the merged array has an odd length, return the middle element
+      return mergedArray[mid];
+    }
+  };
+})();
+const median = findMedianOfArrays(arr1, arr2);
+console.log(median)
+
+Remove duplicates from an array
+======================================================
+Anonymous:
+---------
+
+var removeduplicates = function(arr) {
+  return [...new Set(arr)];
+};
+
+var originalArray = [1, 2, 2, 3, 4, 4, 5];
+var uniqueArray = removeduplicates(originalArray);
+console.log(uniqueArray);
+
+
+IIFE:
+----
+var arr = [1, 2, 3, 3, 4, 4, 5]
+var removeduplicate = (function() {
+  return function(arr) {
+    return [...new Set(arr)];
+  };
+})();
+var uniqueArray = removeduplicate(arr);
+console.log(uniqueArray);
+
+Rotate an array by k times
+======================================================
+Anonymous:
+---------
+var rotateArray = function(arr, k) {
+  var n = arr.length;
+  k %= n; // Handle cases where k is larger than the array length
+  var rotatedArray = [...arr.slice(n - k), ...arr.slice(0, n - k)];
+  return rotatedArray;
+};
+
+
+var originalArray = [1, 2, 3, 4, 5];
+var k = 6;
+var rotatedArray = rotateArray(originalArray, k);
+console.log( rotatedArray);
+
+IIFE:
+----
+var rotateArray = (function() {
+  return function(arr, k) {
+    const n = arr.length;
+    k %= n; // Handle cases where k is larger than the array length
+    const rotatedArray = [...arr.slice(n - k), ...arr.slice(0, n - k)];
+    return rotatedArray;
+  };
+})();
+var originalArray = [1, 2, 3, 4, 5];
+var k = 7;
+var rotatedArray = rotateArray(originalArray, k);
+console.log( rotatedArray);
+
+
+2.Do the below programs in arrow functions.
+
+
+Print odd numbers in an array
+======================================================
+
+var numbers = [11, 12, 13, 14, 15, 16, 17, 8, 9, 10];
+
+// Using arrow function and filter to get odd numbers
+var findingOdd = numbers.filter(number => number % 2 !== 0);
+
+// Logging the result
+console.log(findingOdd);
+
+Convert all the strings to title caps in a string array
+======================================================
+
+((strings) => {
+  for (let i = 0; i < strings.length; i++) {
+    const String = strings[i].toUpperCase();
+    console.log(String)
+  }
+})(["string1", "string2", "string3"]);
+
+
+
+Sum of all numbers in an array
+======================================================
+
+ let sumOfNumbers = (arr) => {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum = sum + arr[i];
+  }
+  console.log(sum);
+};
+
+sumOfNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+
+Return all the prime numbers in an array
+======================================================
+
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 31];
+
+const primeNumbers = array.filter(num => {
+  if (num <= 1) return false;
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false;
+  }
+  return true;
+});
+
+console.log(primeNumbers);
+
+Return all the palindromes in an array
+======================================================
+
+const array = ["gaag", "hello", "mom", "wow", "deed"];
+
+const palindromes = array.filter(str => {
+  const caseChange = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+  return caseChange === caseChange.split('').reverse().join('');
+});
+
+console.log(palindromes);
